@@ -190,6 +190,15 @@ def create_app(test_config=None):
         }
       )
 
+  @app.errorhandler(401)
+  def not_found(error):
+      return jsonify(
+        {
+        'success': False,
+        'error' : 401,
+        'message' : 'Authorzation header Issue'
+        }
+      ), 401
 
   @app.errorhandler(404)
   def not_found(error):
