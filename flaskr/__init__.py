@@ -210,7 +210,6 @@ def create_app(test_config=None):
         }
       ), 404
 
-
   @app.errorhandler(422)
   def unprocessable_entity(error):
       return jsonify(
@@ -219,7 +218,17 @@ def create_app(test_config=None):
         'error': 422,
         'message': 'Unprocessable Entity'
         }
-      )     
+      ), 422
+
+  @app.errorhandler(AuthError)
+  def auth_error(auth_error):
+      return jsonify(
+        {
+         "success": False,
+         "error": auth_error.status_code,
+         "message": auth_error.error['description']
+        }
+      ), auth_error.status_code  
 
   return app
 
