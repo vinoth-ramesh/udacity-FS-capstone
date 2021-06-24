@@ -134,6 +134,10 @@ def create_app(test_config=None):
         if actor is None:
             abort(404, "No actor with given id " + str(actor_id) + " is found")
         body = request.get_json()
+
+        if body is None:
+            abort(422, "Cannot Update with No values.")
+
         name = body.get('name', None)
         age = body.get('age', None)
         gender = body.get('gender', None)
@@ -167,6 +171,10 @@ def create_app(test_config=None):
             abort(404, "No movie with given id " + str(movie_id) + " is found")
 
         body = request.get_json()
+
+        if body is None:
+            abort(422, "Cannot Update with No values.")
+
         title = body.get('title', None)
         release_date = body.get('release_date', None)
 
@@ -211,6 +219,16 @@ def create_app(test_config=None):
                 'message': 'Unprocessable Entity'
             }
         ), 422
+
+    @app.errorhandler(405)
+    def unprocessable_entity(error):
+        return jsonify(
+            {
+                'success': False,
+                'error': 405,
+                'message': 'Method Not Allowed'
+            }
+        ), 405
 
     @app.errorhandler(AuthError)
     def auth_error(auth_error):
