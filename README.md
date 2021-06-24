@@ -72,7 +72,7 @@ python test_app.py
 
 ### Hosted Application and Roles:
 
-There are three roles within the API. Casting Assistant, Casting Director and Executive Producer. The logins for the three roles has been provided in the file [role_token.json][https://github.com/vinoth-ramesh/udacity-FS-capstone/blob/main/role_token.json]
+There are three roles within the API. Casting Assistant, Casting Director and Executive Producer. The logins for the three roles has been provided in the file [role_token.json](https://github.com/vinoth-ramesh/udacity-FS-capstone/blob/main/role_token.json)
 
 The url for the API: https://casting-udacity.herokuapp.com/
 
